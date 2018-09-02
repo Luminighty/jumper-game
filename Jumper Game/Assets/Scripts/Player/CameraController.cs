@@ -55,7 +55,6 @@ public class CameraController : MonoBehaviour {
 		rotation.y += CameraInput.x * rotationSpeed.x * Time.deltaTime * (inverseX ? -1 : 1);
 		rotation.x += CameraInput.y * rotationSpeed.y * Time.deltaTime * (inverseY ? -1 : 1);
 
-		Debug.Log(rotation);
 		if(rotation.x < 180)
 			rotation.x = Mathf.Min(MaxRotation, rotation.x);
 
@@ -63,8 +62,5 @@ public class CameraController : MonoBehaviour {
 			rotation.x = Mathf.Max(MinRotation, rotation.x);
 
 		transform.eulerAngles = rotation;
-
-
-
 	}
 }
