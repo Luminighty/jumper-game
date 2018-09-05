@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour {
 	[Space]
 	public float MaxRotation = 45f;
 	public float MinRotation = 340f;
+	public float MinZoom = 45f;
+	public float MaxZoom = 340f;
 
 	
 	Vector2 GetAxisInputs(string horizontal, string vertical, bool isRaw = false) {

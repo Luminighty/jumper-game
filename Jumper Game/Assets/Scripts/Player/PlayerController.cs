@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	[Header("Components")]
+	public Collider defaultCollider;
+
 	[Tooltip("Camera that follows the player")]
 	public Transform cameraTransform;
 	[Header("Move Settings")]
@@ -15,14 +18,30 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask groundLayers;
 	public int jumpCount = 1;
 	private int currentJumpCount = 0;
-	public float jumpSize = 10f;
-	[System.NonSerialized]
+	public float[] jumpSize;
 	public bool isGrounded = false;
 	[Tooltip("Color: Yellow")]
 	public Vector3 groundBoxOffset;
 	public Vector3 boxSize;
 
+	[Header("Crouch")]
+	public float speedModifier;
+	public Collider crouchCollider;
+
+	[Header("Dive")]
+	public bool isDiving = false;
+	public Vector2 DiveSpeed;
+	public Vector2 DiveGravity;
+	public float DiveTime = 0.5f;
+	private MoveForce currentDive;
+
+	[Header("Debug")]
+	public bool isInputLog;
+
+
 	private Rigidbody rigid;
+	private List<MoveForce> forces = new List<MoveForce>();
+
 
 	Vector2 MoveInput {
 		get { return GetAxisInputs("Horizontal", "Vertical"); }
@@ -41,6 +60,67 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		Move();
 		Jump();
+		Dive();
+
+		ApplyForces(Time.deltaTime);
+		// Used for debugging purposes (Shows the current input in console)
+		LogInput();
+
+
+	}
+
+	void ApplyForces(float time) {
+		
+		Vector3 velocity = rigid.velocity;
+
+		for(int i = 0; i < forces.Count; i++) {
+			velocity = forces[i].ApplyToVelocity(velocity, time);
+			if(!forces[i].Tick(time))
+				forces.RemoveAt(i);
+		}
+
+		rigid.velocity = velocity;
+	}
+
+	void Dive() {
+		if(Input.GetAxisRaw("Dive") == 1) {
+			if(isDiving)
+				return;
+		} else {
+			if(isGrounded)
+				isDiving = false;
+			return;
+		}
+		Debug.Log("Dive");
+		isDiving = true;
+
+		Vector3 forward = transform.forward;
+
+		Vector3 force = forward.normalized;
+		Vector3 gravity = forward.normalized;
+		force.x *= DiveSpeed.x;
+		force.z *= DiveSpeed.x;
+		force.y = DiveSpeed.y;
+		
+		gravity.x *= DiveGravity.x;
+		gravity.z *= DiveGravity.x;
+		gravity.y = DiveGravity.y;
+
+		currentDive = new MoveForce(force, gravity, DiveTime, 0.5f, 0);
+
+		forces.Add(currentDive);
+
+	}
+
+	void LogInput() {
+		if(!isInputLog)
+			return;
+		if(Input.inputString != "")
+		Debug.Log(Input.inputString);
+
+		for(int i = 0; i < 20; i++)
+			if(Input.GetKeyDown("joystick 1 button " + i))
+				Debug.Log("joystick 1 button " + i);
 	}
 
 	void Jump() {
@@ -53,8 +133,8 @@ public class PlayerController : MonoBehaviour {
 
 		// Jump
 		if(Input.GetButtonDown("Jump") && currentJumpCount < jumpCount) {
+			veloc.y = jumpSize[currentJumpCount % jumpSize.Length];
 			currentJumpCount++;
-			veloc.y = jumpSize;
 		}
 		
 		rigid.velocity = veloc;
@@ -65,10 +145,9 @@ public class PlayerController : MonoBehaviour {
 				isGrounded = true;
 			}
 		} else {
-			if(veloc.y <= 0 && isGrounded) {
+			isGrounded = false;
+			if(currentJumpCount == 0)
 				currentJumpCount++;
-				isGrounded = false;	
-			}
 		}
 
 	}
@@ -105,8 +184,65 @@ public class PlayerController : MonoBehaviour {
 		rigid.velocity = velocity;
 
 		if(input != Vector2.zero)
-		Debug.Log(input);
+			Debug.Log(input);
 
 		Debug.DrawRay(transform.position, velocity, Color.red);
+	}
+
+	[System.Serializable]
+	class MoveForce {
+
+		float multiplierX = 1.0f;
+		float multiplierY = 1.0f;
+		Vector3 force;
+		Vector3 gravity;
+		float liveTime = 0.0f;
+
+		public MoveForce(Vector3 force, Vector3 gravity, float lifeTime = 1.0f, float multiplierX = 1.0f, float multiplierY = 1.0f) {
+			this.gravity = gravity;
+			this.force = force;
+			this.liveTime = lifeTime;
+			this.multiplierX = multiplierX;
+			this.multiplierY = multiplierY;
+		}
+
+		public MoveForce(Vector3 force, float lifeTime = 1.0f, float multiplierX = 1.0f, float multiplierY = 1.0f) {
+			this.gravity = Vector3.zero;
+			this.force = force;
+			this.liveTime = lifeTime;
+			this.multiplierX = multiplierX;
+			this.multiplierY = multiplierY;
+		}
+
+		/// <summary>
+		///	Returns false if the lifetime expired
+		/// </summary>
+		public bool Tick(float tickTime) {
+			if(liveTime <= 0.0f) {
+				multiplierX = 1.0f;
+				multiplierY = 1.0f;
+				force = Vector3.zero;
+				gravity = Vector3.zero;
+				return false;
+			}
+
+			liveTime -= tickTime;
+			force += gravity * tickTime;
+
+			return true;
+		}
+
+
+		public Vector3 ApplyToVelocity(Vector3 velocity, float deltaTime) {
+			Vector3 newVelocity = velocity;
+
+			newVelocity.x *= multiplierX;
+			newVelocity.y *= multiplierY;
+			
+			newVelocity += force * deltaTime;
+
+			return newVelocity;
+		}
+
 	}
 }
