@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1862510825321894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 2.14, z: 11}
+  m_LocalPosition: {x: 12, y: 2, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4612653190677486}
@@ -240,16 +240,29 @@ MonoBehaviour:
   jumpSize:
   - 20
   - 13
-  isGrounded: 0
+  isGrounded: 1
   groundBoxOffset: {x: 0, y: 0, z: 0}
-  boxSize: {x: 1, y: 0.5, z: 1}
+  groundBoxSize: {x: 0.9, y: 0.4, z: 0.9}
   speedModifier: 0
   crouchCollider: {fileID: 0}
   isDiving: 0
-  DiveSpeed: {x: 1000, y: 100}
-  DiveGravity: {x: 0, y: -20}
-  DiveTime: 1
+  DiveSpeed: {x: 700, y: 200}
+  DiveGravity: {x: -1000, y: -400}
+  DiveTime: 0.3
+  wallClimb: 0
+  ClimbSpeed: 700
+  ClimbDistance: 3
+  LastWallAngle: 93.48
+  wallLayers:
+    serializedVersion: 2
+    m_Bits: 311
+  wallDistance: 0.2
+  wallOffsets:
+  - {x: 0, y: 1.5, z: 0.5}
+  - {x: 0, y: 0.5, z: 0.5}
+  wallSlideSpeed: 500
   isInputLog: 0
+  isAxisLog: 0
 --- !u!119 &119140548672336240
 Projector:
   m_ObjectHideFlags: 1
