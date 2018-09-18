@@ -1,0 +1,358 @@
+fileFormatVersion: 2
+guid: 25d817186e1f99f48880470c114a3ac0
+timeCreated: 1537276580
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Box001
+    100002: Box002
+    100004: Box003
+    100006: Box005
+    100008: Box006
+    100010: Box007
+    100012: Box008
+    100014: Box009
+    100016: Box010
+    100018: Box011
+    100020: Box012
+    100022: Box013
+    100024: Box014
+    100026: Box015
+    100028: Box016
+    100030: Box017
+    100032: Box018
+    100034: Box019
+    100036: Box020
+    100038: Box021
+    100040: Box022
+    100042: Box023
+    100044: Box024
+    100046: Box025
+    100048: Box026
+    100050: Box027
+    100052: Box028
+    100054: Box029
+    100056: Box030
+    100058: Box031
+    100060: Box032
+    100062: Box033
+    100064: Box034
+    100066: Box035
+    100068: Box036
+    100070: Box037
+    100072: Box038
+    100074: Box039
+    100076: Box040
+    100078: Box041
+    100080: Box042
+    100082: Box043
+    100084: Box044
+    100086: Box045
+    100088: Box046
+    100090: Box047
+    100092: //RootNode
+    100094: Pyramid001
+    100096: Pyramid002
+    400000: Box001
+    400002: Box002
+    400004: Box003
+    400006: Box005
+    400008: Box006
+    400010: Box007
+    400012: Box008
+    400014: Box009
+    400016: Box010
+    400018: Box011
+    400020: Box012
+    400022: Box013
+    400024: Box014
+    400026: Box015
+    400028: Box016
+    400030: Box017
+    400032: Box018
+    400034: Box019
+    400036: Box020
+    400038: Box021
+    400040: Box022
+    400042: Box023
+    400044: Box024
+    400046: Box025
+    400048: Box026
+    400050: Box027
+    400052: Box028
+    400054: Box029
+    400056: Box030
+    400058: Box031
+    400060: Box032
+    400062: Box033
+    400064: Box034
+    400066: Box035
+    400068: Box036
+    400070: Box037
+    400072: Box038
+    400074: Box039
+    400076: Box040
+    400078: Box041
+    400080: Box042
+    400082: Box043
+    400084: Box044
+    400086: Box045
+    400088: Box046
+    400090: Box047
+    400092: //RootNode
+    400094: Pyramid001
+    400096: Pyramid002
+    2300000: Box001
+    2300002: Box002
+    2300004: Box003
+    2300006: Box005
+    2300008: Box006
+    2300010: Box007
+    2300012: Box008
+    2300014: Box009
+    2300016: Box010
+    2300018: Box011
+    2300020: Box012
+    2300022: Box013
+    2300024: Box014
+    2300026: Box015
+    2300028: Box016
+    2300030: Box017
+    2300032: Box018
+    2300034: Box019
+    2300036: Box020
+    2300038: Box021
+    2300040: Box022
+    2300042: Box023
+    2300044: Box024
+    2300046: Box025
+    2300048: Box026
+    2300050: Box027
+    2300052: Box028
+    2300054: Box029
+    2300056: Box030
+    2300058: Box031
+    2300060: Box032
+    2300062: Box033
+    2300064: Box034
+    2300066: Box035
+    2300068: Box036
+    2300070: Box037
+    2300072: Box038
+    2300074: Box039
+    2300076: Box040
+    2300078: Box041
+    2300080: Box042
+    2300082: Box043
+    2300084: Box044
+    2300086: Box045
+    2300088: Box046
+    2300090: Box047
+    2300092: Pyramid001
+    2300094: Pyramid002
+    3300000: Box001
+    3300002: Box002
+    3300004: Box003
+    3300006: Box005
+    3300008: Box006
+    3300010: Box007
+    3300012: Box008
+    3300014: Box009
+    3300016: Box010
+    3300018: Box011
+    3300020: Box012
+    3300022: Box013
+    3300024: Box014
+    3300026: Box015
+    3300028: Box016
+    3300030: Box017
+    3300032: Box018
+    3300034: Box019
+    3300036: Box020
+    3300038: Box021
+    3300040: Box022
+    3300042: Box023
+    3300044: Box024
+    3300046: Box025
+    3300048: Box026
+    3300050: Box027
+    3300052: Box028
+    3300054: Box029
+    3300056: Box030
+    3300058: Box031
+    3300060: Box032
+    3300062: Box033
+    3300064: Box034
+    3300066: Box035
+    3300068: Box036
+    3300070: Box037
+    3300072: Box038
+    3300074: Box039
+    3300076: Box040
+    3300078: Box041
+    3300080: Box042
+    3300082: Box043
+    3300084: Box044
+    3300086: Box045
+    3300088: Box046
+    3300090: Box047
+    3300092: Pyramid001
+    3300094: Pyramid002
+    4300000: Box001
+    4300002: Box002
+    4300004: Box003
+    4300006: Pyramid001
+    4300008: Pyramid002
+    4300010: Box005
+    4300012: Box006
+    4300014: Box007
+    4300016: Box008
+    4300018: Box009
+    4300020: Box010
+    4300022: Box011
+    4300024: Box012
+    4300026: Box013
+    4300028: Box014
+    4300030: Box015
+    4300032: Box016
+    4300034: Box017
+    4300036: Box018
+    4300038: Box019
+    4300040: Box020
+    4300042: Box021
+    4300044: Box022
+    4300046: Box023
+    4300048: Box024
+    4300050: Box025
+    4300052: Box026
+    4300054: Box027
+    4300056: Box028
+    4300058: Box029
+    4300060: Box030
+    4300062: Box031
+    4300064: Box032
+    4300066: Box033
+    4300068: Box034
+    4300070: Box035
+    4300072: Box036
+    4300074: Box037
+    4300076: Box038
+    4300078: Box039
+    4300080: Box040
+    4300082: Box041
+    4300084: Box042
+    4300086: Box043
+    4300088: Box044
+    4300090: Box045
+    4300092: Box046
+    4300094: Box047
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 9932be74b606fa942b299198f4ee4742, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 38bc2869debbf554295047a67cbd43a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: aae41614cfa5a794687be9d2cb67ff8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 21 - Default
+    second: {fileID: 2100000, guid: b22a466f1a2d08e4c88c142bcc22da7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Solid Glass
+    second: {fileID: 2100000, guid: 2508eab0881a33e46aa905e8783d6ebe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall Paint
+    second: {fileID: 2100000, guid: f1646d25fe7c80945bf9399f76095298, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
