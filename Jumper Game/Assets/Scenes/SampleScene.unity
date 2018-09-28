@@ -248,6 +248,26 @@ Prefab:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1289908503}
+    - target: {fileID: 114184640935071570, guid: 77e9821e970c9f2498dec61f809f4cd3,
+        type: 2}
+      propertyPath: wallJumpTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184640935071570, guid: 77e9821e970c9f2498dec61f809f4cd3,
+        type: 2}
+      propertyPath: wallJumpForce.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184640935071570, guid: 77e9821e970c9f2498dec61f809f4cd3,
+        type: 2}
+      propertyPath: wallJumpGravity.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184640935071570, guid: 77e9821e970c9f2498dec61f809f4cd3,
+        type: 2}
+      propertyPath: wallJumpForce.y
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77e9821e970c9f2498dec61f809f4cd3, type: 2}
   m_IsPrefabAsset: 0

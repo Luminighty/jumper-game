@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 
 	[Header("Wall Climb")]
 	public ClimbState wallClimb;
-	public enum ClimbState { None, Climbing, Sliding }
+	public enum ClimbState { None, Climbing, Sliding, Jumping }
 	public float ClimbSpeed;
 	public float ClimbDistance;
 	public float LastWallAngle;
@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour {
 	private float climbStartY = 0.0f;
 	public float wallSlideSpeed;
 
+	[Header("Wall Climb")]
+	public Vector2 wallJumpForce;
+	public Vector2 wallJumpGravity;
+	public float wallJumpTime;
 
 	[Header("Debug")]
 	public bool isInputLog;
@@ -127,27 +131,37 @@ public class PlayerController : MonoBehaviour {
 
 	void WallClimb() {
 		Vector3 way = rigid.velocity;
+		if(isGrounded)
+			wallClimb = ClimbState.None;
 		
 		switch(wallClimb) {
+			case ClimbState.Jumping:
 			case ClimbState.None:
-				if(way.y >= 0.0f || isGrounded)
+				if(way.y >= 0.0f || isGrounded || (wallClimb == ClimbState.Jumping && Mathf.Abs(transform.eulerAngles.y - LastWallAngle) < 100f))
 					return;
 
 				way.y = 0.0f;
 				way.Normalize();
 				
 				bool foundWall = false;
+				bool firstWall = false; // Did the raycast find a wall? (if not then climb to top)
 
 				for(int i = 0; i < wallOffsets.Length && !foundWall; i++) {
 					Vector3 pos = transform.forward * wallOffsets[i].z;
 					pos.y = wallOffsets[i].y;
 					pos += transform.position;
 					foundWall = foundWall || Physics.Raycast(pos, transform.forward, wallDistance, wallLayers.value);
+					if(i == 0)
+						firstWall = foundWall;
 					Debug.DrawRay(pos, transform.forward * wallDistance, Color.green, 1.0f);
 				}
 
 				if(!foundWall)
 					return;
+
+				if(!firstWall) {
+					// Jump up
+				}
 
 				wallClimb = ClimbState.Climbing;
 				climbStartY = transform.position.y;
@@ -165,6 +179,11 @@ public class PlayerController : MonoBehaviour {
 			case ClimbState.Sliding:
 				if(isGrounded)
 					wallClimb = ClimbState.None;
+				
+				if(Input.GetButtonDown("Jump")) {
+					WallJump();
+					return;
+				}
 
 				rigid.velocity = Vector3.down * wallSlideSpeed * Time.deltaTime;
 
@@ -172,7 +191,20 @@ public class PlayerController : MonoBehaviour {
 			default:
 			break;
 		}
+	}
 
+	void WallJump() {
+		Debug.Log("Walljump");
+		Vector3 walljumpWay = Vector3.right;
+		walljumpWay.y = Mathf.Tan(LastWallAngle - 180);
+		walljumpWay.Normalize();
+		walljumpWay *= wallJumpForce.x;
+		walljumpWay.y = wallJumpForce.y;
+
+
+		MoveForce f = new MoveForce(walljumpWay, wallJumpGravity, wallJumpTime, 0.1f);
+		forces.Add(f);
+		wallClimb = ClimbState.Jumping;
 
 	}
 
@@ -269,6 +301,14 @@ public class PlayerController : MonoBehaviour {
 		Vector3 gravity;
 		float liveTime = 0.0f;
 
+		/// <summary>
+		///	Creates a Move Force
+		/// </summary>
+		/// <param name="force">Starting force</param>
+		/// <param name="gravity">Gravity of the force</param>
+		/// <param name="lifeTime">Life time of the force</param>
+		/// <param name="multiplierX">Multiplies the horizontal axis before applying the force</param>
+		/// <param name="multiplierY">Multiplies the vertical axis before applying the force</param>
 		public MoveForce(Vector3 force, Vector3 gravity, float lifeTime = 1.0f, float multiplierX = 1.0f, float multiplierY = 1.0f) {
 			this.gravity = gravity;
 			this.force = force;
@@ -277,6 +317,13 @@ public class PlayerController : MonoBehaviour {
 			this.multiplierY = multiplierY;
 		}
 
+		/// <summary>
+		///	Creates a Move Force
+		/// </summary>
+		/// <param name="force">Starting force</param>
+		/// <param name="lifeTime">Life time of the force</param>
+		/// <param name="multiplierX">Multiplies the horizontal axis before applying the force</param>
+		/// <param name="multiplierY">Multiplies the vertical axis before applying the force</param>
 		public MoveForce(Vector3 force, float lifeTime = 1.0f, float multiplierX = 1.0f, float multiplierY = 1.0f) {
 			this.gravity = Vector3.zero;
 			this.force = force;
@@ -308,6 +355,7 @@ public class PlayerController : MonoBehaviour {
 			Vector3 newVelocity = velocity;
 
 			newVelocity.x *= multiplierX;
+			newVelocity.z *= multiplierX;
 			newVelocity.y *= multiplierY;
 			
 			newVelocity += force * deltaTime;
